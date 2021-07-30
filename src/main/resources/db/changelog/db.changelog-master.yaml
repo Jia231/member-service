@@ -1,0 +1,30 @@
+databaseChangeLog:
+  - changeSet:
+      id: create_table_members
+      author: mlawrie
+      changes:
+        - createTable:
+            tableName: evaluee_uploads
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: created_at
+                  type: datetime
+                  constraints:
+                    nullable: false
+              - column:
+                  name: spreadsheet
+                  type: blob
+                  constraints:
+                    nullable: false
+              - column:
+                  name: processed
+                  type: boolean
+                  constraints:
+                    nullable: false

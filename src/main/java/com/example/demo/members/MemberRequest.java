@@ -17,7 +17,7 @@ import java.time.LocalDate;
 public class MemberRequest {
     private String firstname;
     private String lastname;
-    private String sex;
+    private String gender;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @JsonDeserialize(using = LocalDateDeserializer.class)
     private LocalDate dateOfBirth;
