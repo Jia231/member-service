@@ -1,10 +1,10 @@
 databaseChangeLog:
   - changeSet:
-      id: create_table_members
-      author: mlawrie
+      id: create_table_genders
+      author: jliou
       changes:
         - createTable:
-            tableName: evaluee_uploads
+            tableName: genders
             columns:
               - column:
                   name: id
@@ -14,17 +14,7 @@ databaseChangeLog:
                     primaryKey: true
                     nullable: false
               - column:
-                  name: created_at
-                  type: datetime
-                  constraints:
-                    nullable: false
-              - column:
-                  name: spreadsheet
-                  type: blob
-                  constraints:
-                    nullable: false
-              - column:
-                  name: processed
-                  type: boolean
+                  name: name
+                  type: varchar(10)
                   constraints:
                     nullable: false
