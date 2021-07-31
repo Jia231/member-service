@@ -18,3 +18,127 @@ databaseChangeLog:
                   type: varchar(10)
                   constraints:
                     nullable: false
+  - changeSet:
+      id: insert_labels_into_gender_table
+      author: jliou
+      dbms: mysql
+      changes:
+        - sql:
+            sql: >
+              INSERT INTO genders (name)
+              SELECT 'M';
+              INSERT INTO genders (name)
+              SELECT 'F';
+  - changeSet:
+      id: drop_genders_column
+      author: jliou
+      changes:
+        - dropColumn:
+            tableName: genders
+            columnName: name
+  - changeSet:
+      id: drop_genders_column
+      author: jliou
+      changes:
+        - dropColumn:
+            tableName: genders
+            columnName: name
+  -   changeSet:
+        id: add_gender_label
+        author: jliou
+        changes:
+          -   addColumn:
+                columns:
+                  -   column:
+                        name: label
+                        type: varchar(10)
+                        constraints:
+                          nullable: false
+                tableName: genders
+  - changeSet:
+      id: insert_labels_into_gender_label_column
+      author: jliou
+      dbms: mysql
+      changes:
+        - sql:
+            sql: >
+              INSERT INTO genders (label)
+              SELECT 'Male';
+              INSERT INTO genders (label)
+              SELECT 'Female';
+  - changeSet:
+      id: remove_null_gender
+      author: jliou
+      changes:
+        - delete:
+            tableName: genders
+            where: label IN ('')
+  - changeSet:
+      id: recreate_genders_table
+      author: jliou
+      changes:
+        - dropTable:
+            tableName: genders
+            cascadeConstraints: true
+        - createTable:
+            tableName: genders
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: label
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+  - changeSet:
+      id: reinsert_labels_into_gender_label_column
+      author: jliou
+      dbms: mysql
+      changes:
+        - sql:
+            sql: >
+              INSERT INTO genders (label)
+              SELECT 'Male';
+              INSERT INTO genders (label)
+              SELECT 'Female';
+  - changeSet:
+      id: create_members_table
+      author: jliou
+      changes:
+        - createTable:
+            tableName: members
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: gender
+                  type: int
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_gender
+                    references: genders(id)
+              - column:
+                  name: firstname
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: lastname
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: birthdate
+                  type: datetime
+                  constraints:
+                    nullable: false
