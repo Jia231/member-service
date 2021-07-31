@@ -11,7 +11,8 @@ public class MemberController {
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity addMember(@RequestBody MemberRequest newMember) {
 
-        System.out.println(newMember);
+        Member member = Member.of(newMember.getFirstname() , newMember.getLastname(),
+                newMember.getGender(), newMember.getDateOfBirth());
         return null;
     }
 
