@@ -11,7 +11,7 @@ public class MemberConverter {
 
     public static Member entityToDomain(MemberEntity memberEntity) {
         return Member.of(memberEntity.getFirstname(), memberEntity.getLastname(), memberEntity.getIdcard(),
-                Gender.of(memberEntity.getGender().getLabel()), memberEntity.getDateofbirth());
+                Gender.of(memberEntity.getGender().getLabel().toLowerCase()), memberEntity.getDateofbirth());
     }
 
     public static MemberEntity domainToEntity(Member memberDomain, GenderEntity genderEntity) {

@@ -2,12 +2,14 @@ package com.example.demo.members;
 
 import com.example.demo.gender.Gender;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @AllArgsConstructor
+@Slf4j
 public class MemberController {
 
     private final MemberService memberService;
@@ -15,7 +17,7 @@ public class MemberController {
     @PostMapping(value = "/add/member")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity addMember(@RequestBody MemberRequest newMember) {
-
+        
         Member member = Member.of(newMember.getFirstname() , newMember.getLastname(),
                 newMember.getIdCard(), Gender.of(newMember.getGender()), newMember.getDateOfBirth());
 
