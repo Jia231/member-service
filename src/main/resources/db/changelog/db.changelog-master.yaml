@@ -142,3 +142,84 @@ databaseChangeLog:
                   type: datetime
                   constraints:
                     nullable: false
+  - changeSet:
+      id: add_field_id_card
+      author: jliou
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  name: id_card
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+                    unique: true
+            tableName: members
+  - changeSet:
+      id: change_id_card_name_to_idCard
+      author: jliou
+      changes:
+        - renameColumn:
+            columnDataType: varchar(50)
+            newColumnName: idCard
+            oldColumnName: id_card
+            tableName: members
+  - changeSet:
+      id: change_birth_date_name_to_date_of_birth
+      author: jliou
+      changes:
+        - renameColumn:
+            columnDataType: datetime
+            newColumnName: dateOfBirth
+            oldColumnName: birthdate
+            tableName: members
+  - changeSet:
+      id: change_birth_date_name_to_date_of_birth_lowercase
+      author: jliou
+      changes:
+        - renameColumn:
+            columnDataType: datetime
+            newColumnName: dateofbirth
+            oldColumnName: dateOfBirth
+            tableName: members
+        - renameColumn:
+            columnDataType: varchar(50)
+            newColumnName: idcard
+            oldColumnName: idCard
+            tableName: members
+  - changeSet:
+      id: change_gender_to_gender_id
+      author: jliou
+      changes:
+        - renameColumn:
+            columnDataType: int
+            newColumnName: gender_id
+            oldColumnName: gender
+            tableName: members
+  - changeSet:
+      id: change_gender_id_to_gender
+      author: jliou
+      changes:
+        - renameColumn:
+            columnDataType: int
+            newColumnName: gender
+            oldColumnName: gender_id
+            tableName: members
+  - changeSet:
+      id: change_gender_to_gender_id
+      author: jliou
+      changes:
+        - renameColumn:
+            columnDataType: int
+            newColumnName: gender_id
+            oldColumnName: gender
+            tableName: members
+  - changeSet:
+      id: change_gender_to_gender_id_second_try
+      author: jliou
+      changes:
+        - renameColumn:
+            columnDataType: int
+            newColumnName: gender_id
+            oldColumnName: gender
+            tableName: members

@@ -7,7 +7,10 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class MemberService {
 
-    public void storeMember(Member member) {
+    private final MemberAdapter memberAdapter;
 
+    public Member saveNewMember(Member member) {
+        MemberEntity memberEntity = memberAdapter.saveNewMember(member);
+        return MemberConverter.entityToDomain(memberEntity);
     }
 }

@@ -5,7 +5,6 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 import java.time.LocalDate;
-import java.util.Arrays;
 
 @AllArgsConstructor
 @Getter
@@ -13,18 +12,12 @@ import java.util.Arrays;
 public class Member {
     private final String firstname;
     private final String lastname;
-    private final Integer gender;
+    private final Integer idCard;
+    private final Gender gender;
     private final LocalDate dateOfBirth;
 
-    public static Member of(String firstname, String lastname, String gender, LocalDate dateOfBirth) {
-        return new Member(firstname, lastname, getGenderValue(gender), dateOfBirth);
-    }
-
-    private static Integer getGenderValue(String gender) {
-        Gender genderEnum = Arrays.stream(Gender.values())
-                .filter(g -> g.getLabel().equals(gender))
-                .findFirst().get();
-        return genderEnum.getValue();
+    public static Member of(String firstname, String lastname, Integer idCard, Gender gender, LocalDate dateOfBirth) {
+        return new Member(firstname, lastname, idCard, gender, dateOfBirth);
     }
 
 }

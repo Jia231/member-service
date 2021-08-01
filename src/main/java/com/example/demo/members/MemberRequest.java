@@ -18,6 +18,7 @@ public class MemberRequest {
     private String firstname;
     private String lastname;
     private String gender;
+    private Integer idCard;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @JsonDeserialize(using = LocalDateDeserializer.class)
     private LocalDate dateOfBirth;
