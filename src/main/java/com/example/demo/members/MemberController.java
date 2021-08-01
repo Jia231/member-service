@@ -1,5 +1,6 @@
 package com.example.demo.members;
 
+import com.example.demo.gender.Gender;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

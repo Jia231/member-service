@@ -1,5 +1,6 @@
 package com.example.demo.members;
 
+import com.example.demo.gender.GenderEntity;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;

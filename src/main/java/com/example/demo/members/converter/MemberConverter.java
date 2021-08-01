@@ -1,5 +1,9 @@
-package com.example.demo.members;
+package com.example.demo.members.converter;
 
+import com.example.demo.gender.Gender;
+import com.example.demo.gender.GenderEntity;
+import com.example.demo.members.Member;
+import com.example.demo.members.MemberEntity;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor

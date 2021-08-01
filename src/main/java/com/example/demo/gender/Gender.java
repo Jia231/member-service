@@ -1,9 +1,11 @@
-package com.example.demo.members;
+package com.example.demo.gender;
 
+import com.example.demo.exceptions.NotFoundException;
 import lombok.Getter;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
+
+import static java.util.Objects.isNull;
 
 @Getter
 public enum Gender {
@@ -27,9 +29,15 @@ public enum Gender {
     }
 
     public static Gender of(String genderLabel) {
-        return Arrays.stream(Gender.values())
+        Gender foundGender = Arrays.stream(Gender.values())
                 .filter(gender -> gender.getLabel().equals(genderLabel))
                 .findFirst()
                 .orElse(null);
+
+        if(isNull(foundGender)) {
+            throw new NotFoundException("Gender not found");
+        }
+
+        return foundGender;
     }
 }

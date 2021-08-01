@@ -1,5 +1,6 @@
 package com.example.demo.members;
 
+import com.example.demo.members.converter.MemberConverter;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

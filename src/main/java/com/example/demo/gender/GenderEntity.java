@@ -1,4 +1,4 @@
-package com.example.demo.members;
+package com.example.demo.gender;
 
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
