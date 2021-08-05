@@ -1,0 +1,33 @@
+version: '3'
+services:
+  demo-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - ENVIRONMENT=local
+    env_file:
+      - .env
+    ports:
+      - "7006:7000"
+    volumes:
+      - .:/service
+      - ./.gradle:/root/.gradle
+    links:
+      - demo-db
+    depends_on:
+      - demo-db
+  demo-db:
+    image: mysql/mysql-server:5.7
+    container_name: membersDB
+    restart: always
+    ports:
+      - "33061:3306"
+    env_file: .env
+    environment:
+      MYSQL_DATABASE: demo
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - ./database/local:/var/lib/mysql
+

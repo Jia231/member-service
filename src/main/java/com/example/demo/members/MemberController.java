@@ -17,7 +17,7 @@ public class MemberController {
     @PostMapping(value = "/add/member")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity addMember(@RequestBody MemberRequest newMember) {
-        
+
         Member member = Member.of(newMember.getFirstname() , newMember.getLastname(),
                 newMember.getIdCard(), Gender.of(newMember.getGender()), newMember.getDateOfBirth());
 

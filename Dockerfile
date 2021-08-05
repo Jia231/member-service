@@ -1,1 +1,17 @@
-docker run -d -p 33061:3306 --name membersDB -e MYSQL_ROOT_PASSWORD=foo mysql:5.7 --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+FROM openjdk:11
+
+ARG UID=123
+ARG GID=0
+RUN useradd -u ${UID} -g ${GID} -m go
+RUN apt update
+RUN apt install -y libfreetype6
+RUN apt install -y fontconfig
+
+COPY product.yml /
+COPY entrypoint.sh /
+
+EXPOSE 7000
+
+ENTRYPOINT ["chmod", "+x", "/entrypoint.sh" ]
+
+COPY ./build/libs/demo-0.0.1-SNAPSHOT-plain.jar /service.jar
