@@ -3,7 +3,8 @@ services:
   demo-service:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: DockerfileLocal
+    image: demo:v1
     environment:
       - ENVIRONMENT=local
     env_file:
@@ -22,7 +23,7 @@ services:
     container_name: membersDB
     restart: always
     ports:
-      - "33061:3306"
+      - "3309:3306"
     env_file: .env
     environment:
       MYSQL_DATABASE: demo
