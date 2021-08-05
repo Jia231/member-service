@@ -13,3 +13,22 @@
 ### Liquibase
 1. implementation 'org.liquibase:liquibase-core:3.8.0'
 2. create in resources folder db/changelog and add db.changelog-master.yaml
+
+
+### Docker 
+FROM openjdk:11
+
+RUN adduser --system --group spring
+
+USER spring:spring
+
+ARG JAR_FILE=build/libs/*.jar
+
+EXPOSE 7000
+
+COPY ${JAR_FILE} app.jar
+
+ENTRYPOINT ["java","-jar","/app.jar"]
+
+
+Look into jar contents "jar tf build/libs/demo-0.0.1-SNAPSHOT.jar"

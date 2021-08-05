@@ -13,7 +13,7 @@ install-java:
 	sdk use java ${JAVA_VERSION}
 
 build-demo: install-java
-	./gradlew build && java -jar build/libs/demo-0.1.0.jar
+	./gradlew build && java -jar build/libs/demo-0.0.1-SNAPSHOT.jar
 
 docker-jar:
 	docker-compose up -d

@@ -5,14 +5,11 @@ services:
       context: .
       dockerfile: DockerfileLocal
     image: demo:v1
-    environment:
-      - ENVIRONMENT=local
     env_file:
       - .env
     ports:
       - "7006:7000"
     volumes:
-      - .:/service
       - ./.gradle:/root/.gradle
     links:
       - demo-db
