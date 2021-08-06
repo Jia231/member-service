@@ -3,24 +3,26 @@ services:
   demo-service:
     build:
       context: .
-      dockerfile: DockerfileLocal
+      dockerfile: DockerfileLocalEntry
     image: demo:v1
     env_file:
       - .env
     ports:
-      - "7006:7000"
+      - "5000:8080"
     volumes:
       - ./.gradle:/root/.gradle
     links:
       - demo-db
     depends_on:
       - demo-db
+    networks:
+      - backend
   demo-db:
     image: mysql/mysql-server:5.7
     container_name: membersDB
     restart: always
     ports:
-      - "3309:3306"
+      - "33061:3306"
     env_file: .env
     environment:
       MYSQL_DATABASE: demo
@@ -28,4 +30,10 @@ services:
       MYSQL_PASSWORD: ${DB_PASSWORD}
     volumes:
       - ./database/local:/var/lib/mysql
+    networks:
+      - backend
+networks:
+  backend:
+    # Use a custom driver
+    driver: bridge
 
