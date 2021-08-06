@@ -1,3 +1,10 @@
+buildscript {
+    ext {
+        junitVersion = "4.12"
+        h2Version= "1.4.194"
+    }
+}
+
 plugins {
     id 'org.springframework.boot' version '2.5.3'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
@@ -31,6 +38,7 @@ dependencies {
     implementation 'org.liquibase:liquibase-core:3.8.0'
     implementation 'io.springfox:springfox-swagger2:2.9.2'
     implementation 'io.springfox:springfox-swagger-ui:2.9.2'
+    implementation("com.h2database:h2:${h2Version}")
 
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
