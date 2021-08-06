@@ -32,3 +32,9 @@ ENTRYPOINT ["java","-jar","/app.jar"]
 
 
 Look into jar contents "jar tf build/libs/demo-0.0.1-SNAPSHOT.jar"
+
+
+### Database integration Test
+1. Add h2 dependency
+2. Add test properties
+3. Add Database integration test
