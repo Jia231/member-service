@@ -21,6 +21,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/v2/api-docs",
                         "/swagger-resources/**",
                         "/swagger-ui.html")
-                .permitAll();
+                .permitAll()
+                .anyRequest().authenticated()
+                .and()
+                .oauth2Login();
     }
 }
