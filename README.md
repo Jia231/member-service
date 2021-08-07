@@ -38,3 +38,11 @@ Look into jar contents "jar tf build/libs/demo-0.0.1-SNAPSHOT.jar"
 1. Add h2 dependency
 2. Add test properties
 3. Add Database integration test
+
+
+### Oauth2
+1. Add Oauth dependency
+2. Add id and secret
+3. Add configuration in WebSecurityConfigurerAdapter
+4. In Oauth application add URI "http://localhost:'port'/login/oauth2/code/google"
+

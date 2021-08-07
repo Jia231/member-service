@@ -7,14 +7,18 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.Map;
+
 @RestController
 @AllArgsConstructor
 @Slf4j
+@RequestMapping("/member")
 public class MemberController {
 
     private final MemberService memberService;
 
-    @PostMapping(value = "/add/member")
+    @PostMapping(value = "/add")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity addMember(@RequestBody MemberRequest newMember) {
 
@@ -27,9 +31,10 @@ public class MemberController {
                 HttpStatus.OK);
     }
 
-    @GetMapping(value = "/")
-    public ResponseEntity getMembers() {
-        return new ResponseEntity(HttpStatus.OK);
+    @GetMapping(value = "")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Member> getMembers() {
+        return memberService.getMembers();
     }
 
 }

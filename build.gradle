@@ -2,7 +2,8 @@ buildscript {
     ext {
         junitVersion = "4.12"
         h2Version= "1.4.194"
-        oauthVersion="2.3.3.RELEASE"
+        oauthVersion = "2.3.3.RELEASE"
+        springSecurityVersion = "2.3.6.RELEASE"
     }
 }
 
@@ -41,6 +42,7 @@ dependencies {
     implementation 'io.springfox:springfox-swagger-ui:2.9.2'
     implementation("com.h2database:h2:${h2Version}")
     implementation("org.springframework.boot:spring-boot-starter-oauth2-client:${oauthVersion}")
+    implementation("org.springframework.security.oauth:spring-security-oauth2:${springSecurityVersion}")
 
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'

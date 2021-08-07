@@ -8,6 +8,8 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @AllArgsConstructor
 @Slf4j
@@ -21,5 +23,10 @@ public class MemberAdapter {
                 genderAdapter.findByLabel(newMember.getGender().getLabel()));
 
         return memberRepository.save(memberEntity);
+    }
+
+    public List<MemberEntity> getMembers() {
+        List<MemberEntity> members = memberRepository.findAll();
+        return members;
     }
 }
