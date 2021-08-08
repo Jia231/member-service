@@ -1,19 +1,19 @@
-package com.example.demo.members;
+package com.example.demo.members.repository;
 
 import com.example.demo.DatabaseIntegrationTest;
 import com.example.demo.gender.GenderEntity;
 import com.example.demo.gender.GenderRepository;
+import com.example.demo.members.MemberEntity;
+import com.example.demo.members.MemberRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.TestPropertySource;
 
 import java.time.LocalDate;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@TestPropertySource(locations = "classpath:test.properties")
 public class MemberRepositoryTest extends DatabaseIntegrationTest {
 
     @Autowired

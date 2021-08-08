@@ -20,3 +20,6 @@ docker-jar:
 
 run-demo:
 	docker run -t demo:v1
+
+check: install-java
+	./gradlew clean check
