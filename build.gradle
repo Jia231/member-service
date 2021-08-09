@@ -4,6 +4,7 @@ buildscript {
         h2Version= "1.4.194"
         oauthVersion = "2.3.3.RELEASE"
         springSecurityVersion = "2.3.6.RELEASE"
+        restAssuredVersion = "3.3.0"
     }
 }
 
@@ -48,6 +49,9 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.security:spring-security-test'
+    //testCompile("io.rest-assured:rest-assured:${restAssuredVersion}")
+    //testCompile("io.rest-assured:spring-mock-mvc:${restAssuredVersion}")
+    testImplementation 'io.rest-assured:rest-assured:4.0.0'
 }
 
 test {
