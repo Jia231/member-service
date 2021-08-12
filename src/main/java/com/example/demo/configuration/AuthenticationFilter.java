@@ -2,6 +2,7 @@ package com.example.demo.configuration;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.codec.digest.DigestUtils;
+import org.springframework.util.AntPathMatcher;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -11,7 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
+import java.util.stream.Stream;
 
+import static java.util.Arrays.asList;
 import static java.util.Collections.emptyList;
 import static javax.servlet.http.HttpServletResponse.SC_FORBIDDEN;
 
@@ -20,16 +23,32 @@ public class AuthenticationFilter extends OncePerRequestFilter {
 
     private static final String TOKEN_HEADER_KEY = "auth-token";
 
+    private static final List<String> WHITELISTED_SWAGGER_URIS = asList(
+            "/v2/api-docs",
+            "/swagger-resources/**",
+            "/configuration/security/**",
+            "/swagger-ui.html");
+
     private final List<String> authKeys;
 
     AuthenticationFilter(List<String> authKeyConfig) {
         this.authKeys = extractAuthKeysFromConfig(authKeyConfig);
     }
 
+    private boolean requestedUriIsWhitelisted(HttpServletRequest request) {
+        AntPathMatcher antPathMatcher = new AntPathMatcher();
+        WHITELISTED_SWAGGER_URIS.stream()
+                .anyMatch(prefix -> {
+                  return  antPathMatcher.matchStart(prefix, request.getRequestURI());
+                });
+        return WHITELISTED_SWAGGER_URIS.stream()
+                .anyMatch(prefix -> antPathMatcher.matchStart(prefix, request.getRequestURI()));
+    }
+
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws IOException, ServletException {
-        if (tokenIsValid(request)) {
+        if (requestedUriIsWhitelisted(request) || tokenIsValid(request)) {
             String authToken = request.getHeader(TOKEN_HEADER_KEY);
             log.info("hash:{}, url:{}",
                     (authToken != null) ? DigestUtils.sha256Hex(authToken) : "No token for this URI",
